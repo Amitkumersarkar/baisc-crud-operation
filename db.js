@@ -1,8 +1,16 @@
 const mongoose = require('mongoose')
-mongoose.connect('mongodb://localhost:27017/backend-server-side')
+
+mongoose.connect('mongodb://localhost:27017/backend-server-side', {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+})
+
 mongoose.connection.on('connected', () => {
-    console.log('connected to mongodb')
+    console.log('✅ Connected to MongoDB')
 })
+
 mongoose.connection.on('error', (err) => {
-    console.log('connection error : ', err)
+    console.log('❌ MongoDB connection error: ', err)
 })
+
+module.exports = mongoose
